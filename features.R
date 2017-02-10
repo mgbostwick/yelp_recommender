@@ -37,18 +37,13 @@ feature_gen <- function(){
   t2 <- Sys.time()
   t2 - t1
   top_words <- top.topic.words(sldaOut$topics, num.words = 20)
-  write.table(top_words, "~/Documents/INLS_613/top_words2.txt", sep="\t")
   topic_coeff <- as.data.frame(sldaOut$coef)
   doc_sums <-  as.data.frame(t(sldaOut$document_sums)) %>% 
     mutate(total_words = (V1+V2+V3+V4+V5))
   topic_correlations <- cor(doc_sums)
   doc_sums$review_id <-  review_text$review_id
   doc_sums$text <- review_text$text
-  #save(doc_sums, file = "~/Documents/INLS_613/yelp_dataset/doc_sums.Rda")
-  
-  
-  
-  doc_sum <- load("~/Documents/INLS_613/yelp_dataset/doc_sums.Rda")
+
   sim_prep <-  norm_data %>% left_join(doc_sums, by = "review_id")
   sim_matrix_p <- sim_prep %>% 
     filter(positive == TRUE) %>% 
