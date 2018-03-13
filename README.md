@@ -13,26 +13,26 @@ Full analysis can be run from main_analysis.R which calls other files for each s
 
 ## Description
 
-### main_analysis.py
+### main_analysis.R
 * Calls each of the subprograms below to run the full analysis from reading in data to evaluating predictions.
 
-### data_read.py
+### data_read.R
 1. Reads in business and review JSON files
 2. Flattens to dataframes
 3. Filters to desired list of restaurants
 4. Merges together restaurants and reviews
 
-### train_test.py
+### train_test.R
 1. Normalizes review rating on user-by-user basis
 2. Splits dataset into training and test sets
 
-### features.py
+### features.R
 1. Performs pre-processing of review text (punctuation and stopword removal, lower case, etc.)
 2. Converts to data layout expected by Supervised Latent Dirichlet Allocation (SLDA) function
 3. Runs SLDA to generate topic distributions for each review
 4. Aggregates each user's topic distribution over all of their reviews and outputs as feature matrix
 
-### predict.py
+### predict.R
 1. Custom kNN algorithm that considers all neighbors weighted by their correlation
 2. Predicts review rating from weighted average of neighbors
 
